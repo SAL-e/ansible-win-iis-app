@@ -6,12 +6,12 @@
 
 - name: "Create {{ iis_app_name }}_AppPool"
   block:
-    win_iis_webapppool:
-      name: "{{ iis_app_name }}_AppPool"
-      state: started
-      attributes: "{{ iis_app_pool_attributes }}"
-    set_fact:
-      iis_app_pool: "{{ iis_app_name }}_AppPool"
+    - win_iis_webapppool:
+        name: "{{ iis_app_name }}_AppPool"
+        state: started
+        attributes: "{{ iis_app_pool_attributes }}"
+    - set_fact:
+        iis_app_pool: "{{ iis_app_name }}_AppPool"
   when: iis_app_private_pool
 
 - name: "Create IIS: {{ iis_app_name }} App"
