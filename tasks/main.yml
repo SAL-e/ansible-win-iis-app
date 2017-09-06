@@ -1,2 +1,20 @@
 ---
-# tasks file for ansible-win-iis-app
+- name: "Create app's folder:{{ iis_app_path }}"
+  win_file:
+    path: {{ iis_app_path }}
+    state: directory
+
+- name: "Create {{iis_app_name}}_AppPool"
+  win_iis_webapppool:
+    name: "{{iis_app_name}}_AppPool"
+    state: started
+    attributes: "{{iis_app_pool_attributes}}"
+  when: iis_app_private_pool
+
+- name: "Create IIS: {{iis_app_name}} App"
+  win_iis_webapplication:
+    name: "{{iis_app_name}}"
+    site: "{{iis_app_site}}"
+    state: present
+    physical_path: "{{iis_app_path}}"
+    application_pool: "{{iis_app_name}}_AppPool"
