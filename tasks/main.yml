@@ -1,20 +1,23 @@
 ---
 - name: "Create app's folder:{{ iis_app_path }}"
   win_file:
-    path: {{ iis_app_path }}
+    path: "{{ iis_app_path }}"
     state: directory
 
-- name: "Create {{iis_app_name}}_AppPool"
-  win_iis_webapppool:
-    name: "{{iis_app_name}}_AppPool"
-    state: started
-    attributes: "{{iis_app_pool_attributes}}"
+- name: "Create {{ iis_app_name }}_AppPool"
+  block:
+    win_iis_webapppool:
+      name: "{{ iis_app_name }}_AppPool"
+      state: started
+      attributes: "{{ iis_app_pool_attributes }}"
+    set_fact:
+      iis_app_pool: "{{ iis_app_name }}_AppPool"
   when: iis_app_private_pool
 
-- name: "Create IIS: {{iis_app_name}} App"
+- name: "Create IIS: {{ iis_app_name }} App"
   win_iis_webapplication:
-    name: "{{iis_app_name}}"
-    site: "{{iis_app_site}}"
+    name: "{{ iis_app_name }}"
+    site: "{{ iis_app_site }}"
     state: present
-    physical_path: "{{iis_app_path}}"
-    application_pool: "{{iis_app_name}}_AppPool"
+    physical_path: "{{ iis_app_path }}"
+    application_pool: "{{ iis_app_pool }}"
