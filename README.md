@@ -1,7 +1,7 @@
-Role Name
-=========
+win-iis-app
+===========
 
-A brief description of the role goes here.
+Ansible IIS app role.
 
 Requirements
 ------------
@@ -25,12 +25,12 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: sal-e.win-iis-app, x: 42 }
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
