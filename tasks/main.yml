@@ -1,13 +1,14 @@
 ---
 - name: "Create app's folder:{{ iis_app_path }}"
   win_file:
-    path: "{{ iis_app_path }}"
+    path: "{{ iis_app_path }}\\{{ iis_app_name }}"
     state: directory
 
 - name: "Copy {{ iis_app_name }} to {{ iis_app_path }}."
   win_copy:
     src: "{{ iis_app_source }}"
     dest: "{{ iis_app_path }}"
+    remote_src: True
 
 - name: "Create {{ iis_app_name }}_AppPool"
   block:
@@ -24,5 +25,5 @@
     name: "{{ iis_app_name }}"
     site: "{{ iis_app_site }}"
     state: present
-    physical_path: "{{ iis_app_path }}"
+    physical_path: "{{ iis_app_path }}\\{{ iis_app_name }}"
     application_pool: "{{ iis_app_pool }}"

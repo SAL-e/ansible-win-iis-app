@@ -4,5 +4,5 @@ iis_app_private_pool: True
 iis_app_pool: "DefaultAppPool"
 iis_app_pool_attributes: "managedRuntimeVersion:v4.0"
 iis_app_site: "Default Web Site"
-iis_app_path: "C:\\inetpub\\wwwroot\\IIS-App"
-iis_app_source: "C:\\temp\\IIS-App"
+iis_app_path: "C:\\inetpub\\wwwroot\\"
+iis_app_source: "C:\\temp\\IIS-App\\"
