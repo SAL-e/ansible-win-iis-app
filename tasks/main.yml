@@ -4,6 +4,11 @@
     path: "{{ iis_app_path }}"
     state: directory
 
+- name: "Copy {{ iis_app_name }} to {{ iis_app_path }}."
+  win_copy:
+    src: "{{ iis_app_source }}"
+    dest: "{{ iis_app_path }}"
+
 - name: "Create {{ iis_app_name }}_AppPool"
   block:
     - win_iis_webapppool:
