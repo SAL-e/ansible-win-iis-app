@@ -27,3 +27,9 @@
     state: present
     physical_path: "{{ iis_app_path }}\\{{ iis_app_name }}"
     application_pool: "{{ iis_app_pool }}"
+
+- name: "Set {{ iis_app_conifg_file }} to {{ iis_app_config_dest }}"
+  win_template:
+    src: "{{ iis_app_config_repo }}{{ iis_app_conifg_file }}.j2"
+    dest: "{{ iis_app_config_dest }}\\{{ iis_app_conifg_file }}"
+    newline_sequence: '\r\n'
