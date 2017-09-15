@@ -9,3 +9,5 @@ iis_app_source: "C:\\temp\\IIS-App\\"
 iis_app_config_repo: "./_config/{{ iis_app_name }}/"
 iis_app_conifg_file: "Web.config"
 iis_app_config_dest: "{{ iis_app_path }}\\{{ iis_app_name }}"
+iis_app_enable_authentications: [windowsAuthentication]
+iis_app_disable_authentications: [anonymousAuthentication]
