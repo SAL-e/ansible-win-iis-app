@@ -7,7 +7,7 @@
 - name: "Copy {{ iis_app_name }} to {{ iis_app_path }}."
   win_copy:
     src: "{{ iis_app_source }}"
-    dest: "{{ iis_app_path }}"
+    dest: "{{ iis_app_path }}\\"
     remote_src: True
 
 - name: "Create {{ iis_app_name }}_AppPool"
