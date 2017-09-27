@@ -35,11 +35,11 @@
     newline_sequence: '\r\n'
 
 - name: "Enable Authentication methods."
-  win_shell: "Set_webConfigurationProperty -Filter '/system.webServer/security/authentication/{{ item }}' -Name Enabled -Value True -PSPath IIS:\\ -Location '{{ iis_app_site }}/{{ iis_app_name }}'"
+  win_shell: "Set-WebConfigurationProperty -Filter '/system.webServer/security/authentication/{{ item }}' -Name Enabled -Value True -PSPath IIS:\\ -Location '{{ iis_app_site }}/{{ iis_app_name }}'"
   with_items:
     "{{ iis_app_enable_authentications }}"
 
 - name: "Disable Authentication methods."
-  win_shell: "Set_webConfigurationProperty -Filter '/system.webServer/security/authentication/{{ item }}' -Name Enabled -Value False -PSPath IIS:\\ -Location '{{ iis_app_site }}/{{ iis_app_name }}'"
+  win_shell: "Set-WebConfigurationProperty -Filter '/system.webServer/security/authentication/{{ item }}' -Name Enabled -Value False -PSPath IIS:\\ -Location '{{ iis_app_site }}/{{ iis_app_name }}'"
   with_items:
     "{{ iis_app_disable_authentications }}"
